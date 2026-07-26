@@ -1,0 +1,51 @@
+name: Device Specs API
+description: >-
+  A read-only REST API delivering clean, normalized JSON specifications for mobile devices — phone specs, chipsets/SoCs,
+  display metrics, battery, CPU, memory, camera, and physical dimensions. Covers 12,000+ devices, distributed via the
+  RapidAPI gateway with an official C# NuGet SDK.
+url: https://device-specs-api.apievangelist.com/apis.yml
+created: '2026-07-26'
+modified: '2026-07-26'
+specificationVersion: '0.21'
+tags:
+  - mobile
+  - smartphones
+  - phone-specs
+  - chipsets
+  - hardware
+  - mobile-specs
+  - devices
+  - reference-data
+  - rapidapi
+  - gsmarena
+apis:
+  - name: Device Specs API
+    description: >-
+      Read-only REST API for normalized mobile device specifications, key-authenticated via RapidAPI gateway. OpenAPI
+      3.0.3 documented with four GET operations plus a deep-query engine.
+    humanURL: https://ds.gtgroup.dev/docs
+    baseURL: https://gsmarenaparser.p.rapidapi.com
+    tags:
+      - mobile
+      - smartphones
+      - phone-specs
+      - chipsets
+      - hardware
+      - mobile-specs
+      - devices
+      - reference-data
+      - rapidapi
+      - gsmarena
+    properties:
+      - type: OpenAPI
+        url: https://ds.gtgroup.dev/openapi.json
+      - type: Documentation
+        url: https://ds.gtgroup.dev/docs
+maintainers:
+  - FN: GranTurismo Engineering
+    url: https://ds.gtgroup.dev
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 95
+  at: '2026-07-26T12:34:35.268Z'
