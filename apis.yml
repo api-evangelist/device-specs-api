@@ -1,11 +1,11 @@
 name: Device Specs API
 description: >-
-  A read-only REST API delivering clean, normalized JSON specifications for mobile devices — phone specs, chipsets/SoCs,
-  display metrics, battery, CPU, memory, camera, and physical dimensions. Covers 12,000+ devices, distributed via the
-  RapidAPI gateway with an official C# NuGet SDK.
+  A normalized mobile-device specifications REST API covering 12,000+ smartphones, delivering cleaned/structured JSON
+  for chipsets, display metrics, CPU/RAM/storage, battery & charging, cameras, physical dimensions, connectivity,
+  benchmarks, and EU energy-label data. Distributed and sold via RapidAPI.
 url: https://device-specs-api.apievangelist.com/apis.yml
-created: '2026-07-26'
-modified: '2026-07-26'
+created: '2026-07-27'
+modified: '2026-07-27'
 specificationVersion: '0.21'
 tags:
   - mobile
@@ -15,14 +15,16 @@ tags:
   - hardware
   - mobile-specs
   - devices
-  - reference-data
   - rapidapi
   - gsmarena
+  - reference-data
+  - developer-tools
 apis:
   - name: Device Specs API
     description: >-
-      Read-only REST API for normalized mobile device specifications, key-authenticated via RapidAPI gateway. OpenAPI
-      3.0.3 documented with four GET operations plus a deep-query engine.
+      REST API for normalized mobile-device specifications, fronted by the RapidAPI gateway. Provides device specs by
+      manufacturer/model, devices by brand, devices by chipset, and a query-param filter engine. Auth via RapidAPI key
+      headers (x-rapidapi-key, x-rapidapi-host).
     humanURL: https://ds.gtgroup.dev/docs
     baseURL: https://gsmarenaparser.p.rapidapi.com
     tags:
@@ -33,9 +35,10 @@ apis:
       - hardware
       - mobile-specs
       - devices
-      - reference-data
       - rapidapi
       - gsmarena
+      - reference-data
+      - developer-tools
     properties:
       - type: OpenAPI
         url: https://ds.gtgroup.dev/openapi.json
@@ -43,9 +46,9 @@ apis:
         url: https://ds.gtgroup.dev/docs
 maintainers:
   - FN: GranTurismo Engineering
-    url: https://ds.gtgroup.dev
+    url: https://ds.gtgroup.dev/
 generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 95
-  at: '2026-07-26T12:34:35.268Z'
+  at: '2026-07-27T16:06:00.679Z'
