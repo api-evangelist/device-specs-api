@@ -1,0 +1,72 @@
+generated: '2026-08-09'
+method: searched
+source: https://ds.gtgroup.dev/docs
+notes: >-
+  First-party client libraries published by GranTurismo (Gogita Kupatadze), the maintainer named in
+  https://ds.gtgroup.dev/apis.json. The C# and TypeScript SDKs are published to NuGet and npm; the
+  Java/Kotlin/Android SDK exists as source on GitHub but was NOT found on Maven Central
+  (search.maven.org a:devicespecs -> numFound 0 on 2026-08-09) and the provider's own docs page still
+  labels it "Coming Soon".
+packages:
+  - language: csharp
+    registry: nuget
+    name: DeviceSpecs
+    title: DeviceSpecs SDK
+    url: https://www.nuget.org/packages/DeviceSpecs
+    source: https://github.com/GranTurismo/DeviceSpecs-nuget
+    install: dotnet add package DeviceSpecs
+    version: 1.1.1
+    downloads: 251
+    targets:
+      - .NET Standard 2.0
+      - .NET 8.0
+      - .NET 9.0
+      - .NET 10.0
+    official: true
+    x-evidence:
+      fetched: '2026-08-09'
+      url: https://azuresearch-usnc.nuget.org/query?q=packageid:DeviceSpecs
+      http_status: 200
+  - language: typescript
+    registry: npm
+    name: "@granturismo/devicespecs"
+    url: https://www.npmjs.com/package/@granturismo/devicespecs
+    source: https://github.com/GranTurismo/DeviceSpecs-npm
+    install: npm install @granturismo/devicespecs
+    version: 1.0.0
+    license: MIT
+    published: '2026-07-30'
+    targets:
+      - Node.js
+      - Deno
+      - Bun
+      - Cloudflare Workers
+      - Browser (ESM + CommonJS dual build)
+    official: true
+    x-evidence:
+      fetched: '2026-08-09'
+      url: https://registry.npmjs.org/@granturismo%2Fdevicespecs
+      http_status: 200
+  - language: java
+    registry: github
+    name: com.granturismo:devicespecs-sdk
+    url: https://github.com/GranTurismo/DeviceSpecs-java
+    install: null
+    version: 1.0.0
+    official: true
+    published_to_registry: false
+    status: source-available
+    note: >-
+      README documents a Maven Central coordinate (com.granturismo:devicespecs-sdk:1.0.0) but the
+      artifact is not on Maven Central as of 2026-08-09; ds.gtgroup.dev/docs marks the Java/Android SDK
+      "Coming Soon". Recorded as source-available, not as a released package.
+    x-evidence:
+      fetched: '2026-08-09'
+      url: https://search.maven.org/solrsearch/select?q=a:devicespecs&rows=20&wt=json
+      http_status: 200
+      result: numFound 0
+registries_probed:
+  - {registry: nuget, status: hit}
+  - {registry: npm, status: hit}
+  - {registry: maven-central, status: miss}
+  - {registry: pypi, status: miss}

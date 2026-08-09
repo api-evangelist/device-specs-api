@@ -1,0 +1,57 @@
+generated: '2026-08-09'
+method: searched
+source: https://ds.gtgroup.dev/playground
+description: >-
+  There is no separate test environment, no test-vs-live key separation and no fixture/trigger
+  tooling. What the provider does publish is (a) a hosted interactive playground on the docs host and
+  (b) a free BASIC tier on RapidAPI that calls the same production data with a real key — the free
+  tier IS the sandbox.
+test_live_separation:
+  supported: false
+  key_prefixes: []
+  modes: []
+  note: One credential type only — a RapidAPI subscription key. The same key hits production data on every tier.
+console:
+  - name: API Playground
+    url: https://ds.gtgroup.dev/playground
+    type: interactive-tester
+    status: 200
+    description: Live API tester with a deep-filter query builder, hosted on the documentation host.
+  - name: Swagger UI
+    url: https://ds.gtgroup.dev/swagger
+    type: swagger-ui
+    status: 200
+    description: Interactive OpenAPI 3.0 reference rendered from https://ds.gtgroup.dev/openapi.json.
+  - name: RapidAPI console
+    url: https://rapidapi.com/controller2042000/api/gsmarenaparser
+    type: marketplace-console
+    status: 200
+    description: RapidAPI's own test console for the listed API, where the key is issued.
+free_tier:
+  plan: BASIC
+  price: 0.00
+  quota: 15 requests / day
+  rate_limit: 20 requests / minute
+  signup: https://rapidapi.com/controller2042000/api/gsmarenaparser
+  note: >-
+    The provider's pricing page describes BASIC as "perfect for testing, personal playground sandbox
+    experiments, and client API prototyping". A RapidAPI account and key are still required.
+test_values:
+  published: false
+  note: >-
+    No magic test identifiers, no sample keys and no seeded fixture devices are published. The docs
+    use real production devices as examples (Google/Pixel 9 Pro, Apple/iPhone 15 Pro,
+    Samsung/Galaxy S24 Ultra, OnePlus/12) — these are live records, not test fixtures.
+example_requests:
+  - "GET /api/values/clean/getspecs/Google/Pixel%209%20Pro"
+  - "GET /api/values/clean/getdevices/Apple"
+  - "GET /api/values/clean/devicesbychipset/Tensor-G4"
+  - "GET /api/values/clean/devices?chipset_contains=Snapdragon&battery_gte=5000&ram_between=8,16"
+time_simulation:
+  supported: false
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - {url: "https://ds.gtgroup.dev/playground", http_status: 200}
+    - {url: "https://ds.gtgroup.dev/swagger", http_status: 200}
+    - {url: "https://ds.gtgroup.dev/pricing", http_status: 200}

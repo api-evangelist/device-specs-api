@@ -1,0 +1,30 @@
+{
+  "name": "Device Specs API",
+  "description": "Real-time clean and normalized mobile phone specs, chipsets, display metrics, battery capacities, and physical dimensions API.",
+  "onboarding": {
+    "signup": "https://rapidapi.com/controller2042000/api/deviceultraparser",
+    "pricing": "https://ds.gtgroup.dev/pricing",
+    "documentation": "https://ds.gtgroup.dev/docs",
+    "openapi": "https://ds.gtgroup.dev/openapi.json",
+    "plans": [
+      {
+        "name": "BASIC",
+        "price": "$0.00/mo",
+        "limit": "15 requests/day",
+        "rateLimit": "20 requests/min"
+      },
+      {
+        "name": "PRO",
+        "price": "$4.99/mo",
+        "limit": "Standard commercial access",
+        "rateLimit": "High throughput"
+      },
+      {
+        "name": "ULTRA",
+        "price": "$2.99/mo Special Promo",
+        "limit": "Maximum request quota & high rate limits",
+        "rateLimit": "Max rate limit"
+      }
+    ]
+  }
+}

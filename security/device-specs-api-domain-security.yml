@@ -1,0 +1,25 @@
+generated: '2026-08-09'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: ds.gtgroup.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 22 04:41:21 2026 GMT
+  hsts: null
+- host: gsmarenaparser.p.rapidapi.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb  3 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: gtgroup.dev
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
+- domain: rapidapi.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: false

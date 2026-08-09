@@ -1,0 +1,64 @@
+generated: '2026-08-09'
+method: searched
+source: https://ds.gtgroup.dev/docs
+derived_from: openapi/device-specs-api-openapi-original.json
+format: none
+format_note: >-
+  The API does NOT use RFC 9457 problem+json. The published OpenAPI declares its 401 and 404 responses
+  with a description only — no content type, no schema. Observed live error bodies from the RapidAPI
+  gateway are a flat JSON object with a single `message` string. The catalog below is the provider's
+  own documented HTTP status table (ds.gtgroup.dev/docs, "HTTP Status Codes") reconciled against the
+  spec and against live probes.
+envelope:
+  media_type: application/json
+  fields:
+    - name: message
+      type: string
+      description: Human-readable gateway error string.
+  schema_published: false
+problems:
+  - status: 400
+    title: Bad Request
+    detail: Invalid query parameter input format.
+    source: docs
+    remediation: >-
+      Check the {property}_{operator}={value} filter syntax; range and list operators (between, in)
+      take comma-delimited values.
+    in_openapi: false
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid x-rapidapi-key HTTP header.
+    source: docs+openapi
+    source_operations:
+      - "GET /api/values/clean/devices"
+      - "GET /api/values/clean/getdevices/{manufacturer}"
+      - "GET /api/values/clean/devicesbychipset/{chipset}"
+      - "GET /api/values/clean/getspecs/{manufacturer}/{model}"
+    openapi_ref: "#/components/responses/Unauthorized"
+    remediation: Send a valid RapidAPI subscription key in x-rapidapi-key and the gateway host in x-rapidapi-host.
+    observed_body: '{"message":"Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."}'
+    in_openapi: true
+  - status: 404
+    title: Not Found
+    detail: The requested brand or device model was not found in the database.
+    source: docs+openapi
+    source_operations:
+      - "GET /api/values/clean/getspecs/{manufacturer}/{model}"
+    remediation: Verify the manufacturer and model spellings; look up valid models via the manufacturer directory operation first.
+    in_openapi: true
+  - status: 429
+    title: Too Many Requests
+    detail: Rate limit exceeded for the current subscription tier.
+    source: docs
+    remediation: Back off and retry, or upgrade the RapidAPI subscription tier. Per-tier limits are in rate-limits/device-specs-api-rate-limits.yml.
+    observed_body: '{"message":"Too many requests"}'
+    in_openapi: false
+gaps:
+  - The 400 and 429 statuses the provider documents are absent from the OpenAPI entirely.
+  - No error response in the OpenAPI declares a content type or schema, so no error body can be validated by a client generator.
+  - No machine-readable error code or type URI vocabulary is published; only HTTP status.
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - {url: "https://gsmarenaparser.p.rapidapi.com/", http_status: 401}
+    - {url: "https://gsmarenaparser.p.rapidapi.com/api/values/clean/devices", http_status: 429}

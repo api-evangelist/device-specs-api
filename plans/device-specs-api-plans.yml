@@ -1,0 +1,75 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Device Specs API
+providerId: device-specs-api
+created: '2026-08-09'
+modified: '2026-08-09'
+generated: '2026-08-09'
+method: searched
+tags:
+  - Reference Data
+  - Mobile
+  - Devices
+description: >-
+  Four flat monthly subscription tiers sold and metered through the RapidAPI marketplace, with a free
+  BASIC tier that makes the API publicly consumable. All tiers include the full normalized-metrics
+  dataset, the deep query filtering engine and the official client SDKs — tiers differ only on quota,
+  burst rate and overage treatment.
+sources:
+  - https://ds.gtgroup.dev/pricing
+  - https://ds.gtgroup.dev/llms.txt
+  - https://rapidapi.com/controller2042000/api/gsmarenaparser
+currency: USD
+plans:
+  - id: device-specs-api-basic
+    name: BASIC
+    type: free
+    price: 0.00
+    interval: month
+    description: Testing, personal playground experiments and client prototyping.
+    entries:
+      - {label: Requests, name: requests, type: quota, metric: request, limit: 15, timeFrame: day}
+      - {label: Burst rate, name: rate, type: limit, metric: requests_per_minute, limit: 20, timeFrame: minute}
+      - {label: Overage, name: overage, type: metered, metric: request, price: 0.10}
+      - {label: Bandwidth, name: bandwidth, type: quota, metric: gigabyte, limit: 10, timeFrame: month}
+  - id: device-specs-api-pro
+    name: PRO
+    type: subscription
+    price: 4.99
+    interval: month
+    description: Hobbyists, small-scale tools, catalog seeding jobs and utility applications.
+    entries:
+      - {label: Requests, name: requests, type: quota, metric: request, limit: 10000, timeFrame: month}
+      - {label: Burst rate, name: rate, type: limit, metric: requests_per_second, limit: 5, timeFrame: second}
+      - {label: Overage, name: overage, type: metered, metric: request, price: 0.001}
+      - {label: Bandwidth, name: bandwidth, type: quota, metric: gigabyte, limit: 10, timeFrame: month}
+  - id: device-specs-api-ultra
+    name: ULTRA
+    type: subscription
+    price: 7.99
+    interval: month
+    recommended: true
+    description: Production consumer apps, comparison-matrix platforms and high-load clients.
+    entries:
+      - {label: Requests, name: requests, type: quota, metric: request, limit: 25000, timeFrame: month}
+      - {label: Burst rate, name: rate, type: limit, metric: requests_per_second, limit: 10, timeFrame: second}
+      - {label: Overage, name: overage, type: metered, metric: request, price: 0.001}
+      - {label: Bandwidth, name: bandwidth, type: quota, metric: gigabyte, limit: 10, timeFrame: month}
+  - id: device-specs-api-mega
+    name: MEGA
+    type: subscription
+    price: 29.99
+    interval: month
+    description: High-volume enterprise integrations, search-engine crawlers and analytics engines.
+    entries:
+      - {label: Requests, name: requests, type: quota, metric: request, limit: 500000, timeFrame: month}
+      - {label: Burst rate, name: rate, type: limit, metric: requests_per_second, limit: 20, timeFrame: second}
+      - {label: Overage, name: overage, type: hard-cap, metric: request, price: 0}
+      - {label: Bandwidth, name: bandwidth, type: quota, metric: gigabyte, limit: 10, timeFrame: month}
+notes:
+  - Checkout and metering happen on RapidAPI; the provider does not sell direct.
+  - >-
+    The provider's /.well-known/api-onboarding manifest lists only three plans and prices ULTRA at
+    "$2.99/mo Special Promo", contradicting the $7.99 on /pricing and in llms.txt. The pricing page is
+    treated as authoritative here.

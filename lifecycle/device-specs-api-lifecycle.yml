@@ -1,0 +1,89 @@
+generated: '2026-08-09'
+method: searched
+source: https://ds.gtgroup.dev/docs
+versioning:
+  scheme: none
+  current: '1.0.0'
+  spec_version: '1.0.0'
+  runtime_label: v2.4 Engine
+  docs: https://ds.gtgroup.dev/docs
+  note: >-
+    No version segment in any path, no version header, no version query parameter. The OpenAPI
+    info.version reads 1.0.0 while the developer site header and footer brand the runtime "v2.4
+    Production Engine". The provider publishes no policy reconciling the two, and no statement about
+    what constitutes a breaking change.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header support documented, and no operation
+    in the OpenAPI carries deprecated: true. No Deprecation pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  published_claims:
+    - claim: "<100ms response latency globally (core execution time <15ms)"
+      source: https://ds.gtgroup.dev/llms-full.txt
+      contractual: false
+    - claim: "Database updated within 24 hours of official device announcements and market releases"
+      source: https://ds.gtgroup.dev/llms-full.txt
+      contractual: false
+  note: >-
+    Latency and freshness are stated as marketing "SLAs" in llms.txt / llms-full.txt but no SLA
+    document, credit schedule or measurement method is published. Recorded as claims, not as an SLA.
+status_page: null
+status_page_note: >-
+  The provider's own apis.json declares type StatusPage pointing at https://ds.gtgroup.dev/pricing,
+  which is the pricing page, not a status page. https://ds.gtgroup.dev/status returns 404. No
+  StatusPage pointer is emitted for this provider.
+changelog: null
+changelog_note: >-
+  The provider's own apis.json declares type ChangeLog pointing at https://ds.gtgroup.dev/docs. No
+  dated changelog or release-notes page was found; https://ds.gtgroup.dev/changelog returns 404. The
+  /blogs section is hardware news, not API release notes. No ChangeLog pointer is emitted.
+gateways:
+  - name: RapidAPI
+    host: gsmarenaparser.p.rapidapi.com
+    status: live
+    evidence: {url: "https://gsmarenaparser.p.rapidapi.com/", http_status: 401, body: "Invalid API key."}
+    listing: https://rapidapi.com/controller2042000/api/gsmarenaparser
+    listing_evidence: {url: "https://rapidapi.com/controller2042000/api/gsmarenaparser", html_title: GSMArenaParser}
+  - name: RapidAPI (host named throughout the provider's docs)
+    host: deviceultraparser.p.rapidapi.com
+    status: unresolved
+    evidence: {url: "https://deviceultraparser.p.rapidapi.com/", http_status: 404, body: "API doesn't exists"}
+    listing_evidence: {url: "https://rapidapi.com/controller2042000/api/deviceultraparser", html_title: API Hub}
+    note: >-
+      ds.gtgroup.dev/docs, /llms.txt, /llms-full.txt, the .well-known/api-onboarding manifest and the
+      OpenAPI x-rapidapi-host security-scheme description all name deviceultraparser.p.rapidapi.com as
+      the production gateway and https://rapidapi.com/controller2042000/api/deviceultraparser as the
+      signup/checkout link. Neither resolves. The gateway host root returns the same
+      {"message":"API doesn't exists"} 404 that a control probe of a fabricated RapidAPI host returns,
+      and the listing page renders the generic SPA shell (<title>API Hub</title>) — identical to a
+      control probe of a fabricated listing slug — while the gsmarenaparser listing renders
+      <title>GSMArenaParser</title> and its gateway host returns a real 401. Every documented
+      onboarding path for this API therefore points at a listing that does not exist; the only working
+      one is the gsmarenaparser listing, which the provider does not link anywhere.
+  - name: API.market
+    host: prod.api.market
+    path: /api/v1/granturismo/device-specs-api
+    status: unverified
+    evidence: {url: "https://prod.api.market/api/v1/granturismo/device-specs-api/api/values/clean/devices", http_status: 400}
+    note: >-
+      llms.txt advertises an API.market gateway. The 400 returned is API.market's generic
+      "No x-api-market-key" pre-routing response — a control probe of a fabricated seller/API path
+      returns the identical body — and https://api.market/store/granturismo renders "No APIs available
+      in this store yet." Not confirmed as a live distribution channel.
+support:
+  email: kupatadze2000@outlook.com
+  source: https://ds.gtgroup.dev/apis.json
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - {url: "https://ds.gtgroup.dev/status", http_status: 404}
+    - {url: "https://ds.gtgroup.dev/changelog", http_status: 404}
+    - {url: "https://ds.gtgroup.dev/docs", http_status: 200}
+    - {url: "https://deviceultraparser.p.rapidapi.com/", http_status: 404}
+    - {url: "https://gsmarenaparser.p.rapidapi.com/", http_status: 401}

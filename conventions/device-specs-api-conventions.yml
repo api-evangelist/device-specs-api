@@ -1,0 +1,118 @@
+generated: '2026-08-09'
+method: searched
+source: https://ds.gtgroup.dev/docs
+also_derived_from:
+  - openapi/device-specs-api-openapi-original.json
+  - llms/device-specs-api-llms.txt
+description: >-
+  Cross-cutting request/response semantics for the Device Specs API. The API is a read-only REST
+  surface (four GET operations) fronted by the RapidAPI gateway, with a documented in-memory
+  "deep query filtering engine" layered on the list operation.
+authentication:
+  style: api-key-headers
+  headers:
+    - name: x-rapidapi-key
+      required: true
+      description: The caller's RapidAPI subscription key.
+    - name: x-rapidapi-host
+      required: true
+      description: The RapidAPI gateway host the request is routed to.
+  gateway: RapidAPI
+  docs: https://ds.gtgroup.dev/docs
+  artifact: authentication/device-specs-api-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header, parameter or contract is documented, and none appears in the OpenAPI.
+    The API exposes only GET operations, which are idempotent by HTTP method semantics — but there is
+    no provider idempotency contract for retries of unsafe operations because there are no unsafe
+    operations. No Idempotency pointer is emitted for this provider.
+pagination:
+  style: limit-offset
+  applies_to:
+    - GET /getdevices
+  parameters:
+    - name: limit
+      in: query
+      type: integer
+      default: 50
+      max: 500
+      description: Maximum records returned.
+    - name: offset
+      in: query
+      type: integer
+      default: 0
+      description: Zero-based pagination offset.
+  response_fields: []
+  note: >-
+    limit/offset are documented in llms.txt and llms-full.txt for the /getdevices endpoint but are NOT
+    declared in the published OpenAPI, which lists only battery_gte, chipset_contains and ram_between
+    on the list operation. No total-count or next-cursor field is documented in the response.
+filtering:
+  name: Deep Query Filtering Engine
+  docs: https://ds.gtgroup.dev/docs
+  syntax: "{property}_{operator}={value}"
+  default_operator: eq
+  delimiter: ","
+  operators:
+    - {op: eq, targets: [string, numeric, boolean], example: "manufacturer=Samsung", description: "Exact match, case-insensitive for strings."}
+    - {op: contains, targets: [string, list-of-strings], example: "chipset_contains=Snapdragon", description: "Substring match on the property or any list item."}
+    - {op: in, targets: [string, numeric, list], example: "manufacturer_in=Apple,Samsung", description: "Matches any comma-separated option."}
+    - {op: has, targets: [boolean], example: "nfc_has=true", description: "Matches when the boolean feature flag is true; the value may be omitted."}
+    - {op: gt, targets: [numeric, numeric-list], example: "battery_gt=4500", description: "Strictly greater than."}
+    - {op: gte, targets: [numeric, numeric-list], example: "battery_gte=5000", description: "Greater than or equal."}
+    - {op: lt, targets: [numeric, numeric-list], example: "price_lt=400", description: "Strictly less than."}
+    - {op: lte, targets: [numeric, numeric-list], example: "price_lte=800", description: "Less than or equal."}
+    - {op: between, targets: [numeric, numeric-list], example: "ram_between=8,12", description: "Inclusive range [min, max]."}
+  property_aliases:
+    root: [id, manufacturer, model, chipset, price, price_usd]
+    display: [displaysize, panel_type, refreshrate, brightness]
+    memory_and_power: [ram, storage, battery, charging, wireless_charging]
+    hardware_and_sound: [nfc, water_resistant, jack_35mm, stereo_speakers]
+  note: >-
+    Aliases map to the nested normalized_specs paths (e.g. refreshrate ->
+    normalized_specs.display.refresh_rate_hz) so callers do not have to spell raw JSON paths.
+  examples:
+    - "GET /api/values/clean/devices?chipset_contains=Snapdragon&battery_gte=5000&ram_between=8,16"
+    - "GET /api/values/clean/devices?manufacturer_in=Samsung,Xiaomi,Oppo&nfc_has=true&refreshrate_gte=120"
+field_expansion:
+  supported: false
+  note: >-
+    No sparse-fieldset or expand parameter is documented. Every response carries the full
+    DeviceSpecsResponse object including the nested normalized_specs graph.
+metadata:
+  customer_metadata: false
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation header is documented by the provider or declared in the OpenAPI.
+versioning:
+  scheme: none-in-path
+  note: >-
+    Paths carry no version segment. The OpenAPI info.version is 1.0.0 while the developer site brands
+    the runtime "v2.4 Engine" — the two are not reconciled anywhere the provider publishes.
+  artifact: lifecycle/device-specs-api-lifecycle.yml
+error_envelope:
+  shape: gateway-json
+  documented_body_schema: false
+  gateway_field: message
+  example: '{"message":"Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."}'
+  note: >-
+    Errors observed on the live gateway are RapidAPI envelopes with a single `message` string. The
+    OpenAPI declares 401 and 404 responses with a description only and no response schema or content
+    type, so there is no machine-readable error body contract. Not RFC 9457.
+  artifact: errors/device-specs-api-problem-types.yml
+rate_limit_signaling:
+  documented_headers: []
+  throttled_status: 429
+  note: >-
+    Quotas and per-second/per-minute rate limits are published per subscription tier on the pricing
+    page, but no X-RateLimit-* response headers are documented. RapidAPI's gateway conventionally
+    returns X-RateLimit-* headers; the provider does not document them.
+  artifact: rate-limits/device-specs-api-rate-limits.yml
+media_types:
+  request: []
+  response: [application/json]
+http_methods: [GET]
+safety:
+  read_only: true
+  note: All four published operations are GET; there is no write surface.

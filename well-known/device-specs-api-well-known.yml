@@ -1,0 +1,64 @@
+generated: '2026-08-09'
+method: probed
+source: live probes of the documentation host and the RapidAPI gateway host
+hosts:
+  - host: https://ds.gtgroup.dev
+    documents:
+      - path: /.well-known/api-onboarding
+        status: 200
+        content_type: application/json
+        file: device-specs-api-api-onboarding.json
+        note: >-
+          Non-standard path (not an IETF/RFC 8615 registered well-known suffix). Carries the provider's
+          signup, pricing, documentation and OpenAPI URLs plus a plan summary. Referenced from
+          https://ds.gtgroup.dev/apis.json as type APIOnboarding.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/mcp.json
+        status: 404
+other_discovery_documents:
+  - path: /apis.json
+    url: https://ds.gtgroup.dev/apis.json
+    status: 200
+    note: APIs.json 0.21 platform manifest published by the provider.
+  - path: /openapi.json
+    url: https://ds.gtgroup.dev/openapi.json
+    status: 200
+  - path: /spectral.yaml
+    url: https://ds.gtgroup.dev/spectral.yaml
+    status: 200
+  - path: /llms.txt
+    url: https://ds.gtgroup.dev/llms.txt
+    status: 200
+  - path: /llms-full.txt
+    url: https://ds.gtgroup.dev/llms-full.txt
+    status: 200
+  - path: /sitemap.xml
+    url: https://ds.gtgroup.dev/sitemap.xml
+    status: 200
+  - path: /robots.txt
+    url: https://ds.gtgroup.dev/robots.txt
+    status: 200
+    note: >-
+      Explicitly Allow-lists GPTBot, ChatGPT-User, PerplexityBot, Google-Extended, ClaudeBot,
+      Claude-Web, anthropic-ai, Applebot-Extended, Bytespider, CCBot, Cohere-ai, Diffbot, FacebookBot,
+      Meta-ExternalAgent and YouBot — an opt-in agent-access posture.
+x-evidence:
+  fetched: '2026-08-09'
+  soft_404_control: >-
+    https://ds.gtgroup.dev/nonexistent-soft404-check returned 404, confirming the host returns real
+    404s and the 200s above are genuine documents rather than SPA catch-alls.

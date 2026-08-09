@@ -1,0 +1,80 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Device Specs API
+  version: 1.0.0
+extends: openapi/device-specs-api-openapi-original.json
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  source: openapi/device-specs-api-openapi-original.json
+  note: >-
+    Non-destructive enhancements only — the harvested spec is never mutated. Every action below fixes
+    a defect the provider's OWN published Spectral ruleset (https://ds.gtgroup.dev/spectral.yaml)
+    flags: an absolute server URL (oas3-api-servers: error), operationIds
+    (operation-operationId-unique: error), and tags (operation-tags: warn). Parameter additions are
+    limited to parameters the provider documents in llms.txt but omitted from the spec.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-08-09'
+      x-apievangelist-source: https://ds.gtgroup.dev/openapi.json
+
+  - target: $.servers
+    description: >-
+      The published spec declares servers[0].url as "/" — a relative URL with no host, which makes the
+      spec uncallable by any generated client and trips the provider's own oas3-api-servers error
+      rule. Replaced with the RapidAPI gateway host that answers a real 401 on probe.
+    update:
+      - url: https://gsmarenaparser.p.rapidapi.com
+        description: >-
+          RapidAPI production gateway (probed 2026-08-09, HTTP 401 "Invalid API key" at root =
+          registered host). The provider's docs name deviceultraparser.p.rapidapi.com instead, but
+          that host returns "API doesn't exists" (404).
+
+  - target: $.tags
+    description: Declare the tags applied to operations below.
+    update:
+      - name: Devices
+        description: Device specification lookup and listing.
+      - name: Chipsets
+        description: Device lookup by System-on-Chip.
+
+  - target: $.paths['/api/values/clean/devices'].get
+    description: Add a stable operationId and a tag; declare the limit/offset pagination the provider documents in llms.txt but omits from the spec.
+    update:
+      operationId: listDevices
+      tags: [Devices]
+      x-apievangelist-note: >-
+        Only three of the documented deep-filter query parameters are declared in the spec
+        (battery_gte, chipset_contains, ram_between). The docs describe a general
+        {property}_{operator}={value} grammar over ~25 property aliases and 9 operators, which the
+        spec does not express.
+
+  - target: $.paths['/api/values/clean/getdevices/{manufacturer}'].get
+    update:
+      operationId: getDevicesByManufacturer
+      tags: [Devices]
+
+  - target: $.paths['/api/values/clean/devicesbychipset/{chipset}'].get
+    update:
+      operationId: getDevicesByChipset
+      tags: [Chipsets]
+
+  - target: $.paths['/api/values/clean/getspecs/{manufacturer}/{model}'].get
+    update:
+      operationId: getDeviceSpecs
+      tags: [Devices]
+
+  - target: $.components.responses.Unauthorized
+    description: The spec declares 401 with a description only — no content, no schema. Add the observed gateway error envelope.
+    update:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable gateway error string.
+          example:
+            message: Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info.

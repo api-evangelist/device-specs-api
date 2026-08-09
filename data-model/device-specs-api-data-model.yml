@@ -1,0 +1,93 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/device-specs-api-openapi-original.json
+also_searched: https://ds.gtgroup.dev/docs
+description: >-
+  Entity graph derived from the OpenAPI components.schemas $ref links. The model is a single
+  aggregate root (DeviceSpecsResponse) that composes one normalized-metrics subtree and a list of
+  hardware variants. There are no cross-entity id references — the API returns whole devices, and
+  every relationship below is composition, not a foreign key.
+root_entity: DeviceSpecsResponse
+entities:
+  - name: DeviceSpecsResponse
+    description: A single mobile device record — raw GSMArena-style attribute strings plus a parsed normalized subtree.
+    identifier: {field: id, type: integer}
+    natural_key: [manufacturer, model]
+    fields_raw:
+      - manufacturer
+      - model
+      - network
+      - announceDate
+      - status
+      - chipset
+      - androidVersion
+      - battery_raw
+      - cpu_raw
+      - displayResolution_raw
+      - displaySize_raw
+      - displayType_raw
+      - gpu
+      - internal_raw
+      - mainCameraFeatures
+      - mainCameraSpecs_raw
+      - mainVideoSpecs
+      - selfieCameraFeatures
+      - selfieCameraSpecs_raw
+      - selfieVideoSpecs
+      - sensors
+      - charging_raw
+      - imageUrl
+      - colors
+    fields_priced: [price_usd, price_eur, price_gbp]
+  - name: DeviceVariant
+    description: A hardware variant / regional model number of a device.
+    identifier: {field: id, type: integer}
+    fields: [model_number]
+  - name: NormalizedSpecs
+    description: Container for the ten parsed metric subsystems.
+  - name: DisplayMetrics
+    fields: [size_inches, panel_type, refresh_rate_hz, peak_brightness_nits, protection_type]
+  - name: CpuMetrics
+    fields: [total_cores, max_clock_speed_ghz]
+  - name: MemoryMetrics
+    fields: [available_ram_gb, available_storage_gb, has_card_slot, storage_technology]
+  - name: PowerMetrics
+    fields: [capacities_mah, max_wired_charging_w, has_wireless_charging]
+  - name: CameraSummary
+    fields: [main_lenses_count, max_main_resolution_mp, selfie_lenses_count]
+  - name: PhysicalMetrics
+    fields: [height_mm, width_mm, thickness_mm, weight_g, build_materials, sim_options, ip_rating, is_water_resistant]
+  - name: SoundMetrics
+    fields: [has_stereo_speakers, has_jack_35mm, audio_quality_features]
+  - name: ConnectivityMetrics
+    fields: [wlan_features, bluetooth_version, bluetooth_features, positioning_tech, has_nfc, has_infrared, has_radio, usb_type, usb_has_otg]
+  - name: BenchmarkMetrics
+    fields: [antutu_score, geekbench_score, measured_display_brightness_nits, measured_loudspeaker_lufs, measured_battery_active_use_hours]
+  - name: EuLabelMetrics
+    fields: [energy_class, battery_endurance, battery_endurance_hours, free_fall_class, repairability_class]
+    note: EU Regulation 2023/1669 smartphone energy-label fields.
+relationships:
+  - {from: DeviceSpecsResponse, to: DeviceVariant, kind: has_many, via: variants}
+  - {from: DeviceSpecsResponse, to: NormalizedSpecs, kind: has_one, via: normalized_specs}
+  - {from: NormalizedSpecs, to: DisplayMetrics, kind: has_one, via: display}
+  - {from: NormalizedSpecs, to: CpuMetrics, kind: has_one, via: processor}
+  - {from: NormalizedSpecs, to: MemoryMetrics, kind: has_one, via: memory_options}
+  - {from: NormalizedSpecs, to: PowerMetrics, kind: has_one, via: battery_and_charging}
+  - {from: NormalizedSpecs, to: CameraSummary, kind: has_one, via: cameras}
+  - {from: NormalizedSpecs, to: PhysicalMetrics, kind: has_one, via: physical}
+  - {from: NormalizedSpecs, to: SoundMetrics, kind: has_one, via: sound}
+  - {from: NormalizedSpecs, to: ConnectivityMetrics, kind: has_one, via: connectivity}
+  - {from: NormalizedSpecs, to: BenchmarkMetrics, kind: has_one, via: benchmarks}
+  - {from: NormalizedSpecs, to: EuLabelMetrics, kind: has_one, via: eu_label}
+implicit_dimensions:
+  - name: manufacturer
+    note: >-
+      Addressed as a path segment (/getdevices/{manufacturer}) and filterable, but has no schema of
+      its own — there is no Manufacturer entity and no operation that lists manufacturers.
+  - name: chipset
+    note: >-
+      Addressed as a path segment (/devicesbychipset/{chipset}) and filterable via chipset_contains,
+      but modelled only as a free-text string on the device; there is no Chipset entity and no
+      operation that lists chipsets, despite the site publishing /chipset/{slug} browse pages.
+id_prefixes: []
+subway: null

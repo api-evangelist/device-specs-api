@@ -1,0 +1,662 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Device Specs API",
+    "description": "Access structured, clean, and normalized mobile phone specifications, chipsets, and physical metrics. Sourced dynamically and formatted in standardized JSON, perfect for database seeding, application schemas, and AI/LLM model context windows.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "GranTurismo Support",
+      "url": "https://ds.gtgroup.dev"
+    },
+    "x-logo": {
+      "url": "https://ds.gtgroup.dev/favicon.png",
+      "backgroundColor": "#0b0f19"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Production API Engine Gateway"
+    }
+  ],
+  "security": [
+    {
+      "RapidApiKey": [],
+      "RapidApiHost": []
+    }
+  ],
+  "paths": {
+    "/api/values/clean/devices": {
+      "get": {
+        "summary": "List and Filter Devices",
+        "description": "Retrieve a list of mobile devices matching the specified filter parameters.",
+        "parameters": [
+          {
+            "name": "battery_gte",
+            "in": "query",
+            "description": "Filter devices with battery capacity greater than or equal to this value (in mAh).",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "chipset_contains",
+            "in": "query",
+            "description": "Substring match for the chipset name (e.g. Snapdragon, Tensor).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ram_between",
+            "in": "query",
+            "description": "Range filter for RAM (e.g. \"8,12\" for between 8GB and 12GB).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of device specifications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceSpecsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/values/clean/getdevices/{manufacturer}": {
+      "get": {
+        "summary": "Get Devices by Manufacturer",
+        "description": "Retrieve all tracked mobile devices from a specific manufacturer.",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "description": "The name of the manufacturer (e.g. Google, Samsung, Apple).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of device specifications for the manufacturer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceSpecsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/values/clean/devicesbychipset/{chipset}": {
+      "get": {
+        "summary": "Get Devices by Chipset",
+        "description": "Retrieve all mobile devices powered by a specific SoC/chipset.",
+        "parameters": [
+          {
+            "name": "chipset",
+            "in": "path",
+            "description": "The URL-friendly chipset name (e.g. Tensor-G4, Snapdragon-8-Gen-3).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of devices powered by the specified chipset.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceSpecsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/values/clean/getspecs/{manufacturer}/{model}": {
+      "get": {
+        "summary": "Get Specific Device Specifications",
+        "description": "Retrieve the detailed specifications (both raw and normalized) for a specific device model.",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "description": "The name of the manufacturer (e.g. Google).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "in": "path",
+            "description": "The model name of the device (e.g. Pixel-9-Pro).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The detailed specifications of the specified device.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceSpecsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "Device not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "RapidApiKey": {
+        "type": "apiKey",
+        "name": "x-rapidapi-key",
+        "in": "header",
+        "description": "Your personal RapidAPI key."
+      },
+      "RapidApiHost": {
+        "type": "apiKey",
+        "name": "x-rapidapi-host",
+        "in": "header",
+        "description": "Always set to 'deviceultraparser.p.rapidapi.com'."
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Unauthorized. Missing or invalid RapidAPI key."
+      }
+    },
+    "schemas": {
+      "DeviceSpecsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 4820
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Google"
+          },
+          "model": {
+            "type": "string",
+            "example": "Pixel 9 Pro"
+          },
+          "network": {
+            "type": "string",
+            "example": "GSM / HSPA / LTE / 5G"
+          },
+          "announceDate": {
+            "type": "string",
+            "example": "2024, August 13"
+          },
+          "status": {
+            "type": "string",
+            "example": "Available. Released 2024, September 04"
+          },
+          "chipset": {
+            "type": "string",
+            "example": "Google Tensor G4 (4 nm)"
+          },
+          "androidVersion": {
+            "type": "string",
+            "example": "Android 14, up to 7 major OS upgrades"
+          },
+          "battery_raw": {
+            "type": "string",
+            "example": "Li-Ion 4700 mAh, non-removable"
+          },
+          "cpu_raw": {
+            "type": "string",
+            "example": "Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)"
+          },
+          "displayResolution_raw": {
+            "type": "string",
+            "example": "1280 x 2856 pixels, 20:9 ratio (~495 ppi density)"
+          },
+          "displaySize_raw": {
+            "type": "string",
+            "example": "6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)"
+          },
+          "displayType_raw": {
+            "type": "string",
+            "example": "LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)"
+          },
+          "gpu": {
+            "type": "string",
+            "example": "Mali-G715 MC7"
+          },
+          "internal_raw": {
+            "type": "string",
+            "example": "128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM"
+          },
+          "mainCameraFeatures": {
+            "type": "string",
+            "example": "LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take"
+          },
+          "mainCameraSpecs_raw": {
+            "type": "string",
+            "example": "50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)"
+          },
+          "mainVideoSpecs": {
+            "type": "string",
+            "example": "8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps"
+          },
+          "selfieCameraFeatures": {
+            "type": "string",
+            "example": "Auto-HDR, panorama"
+          },
+          "selfieCameraSpecs_raw": {
+            "type": "string",
+            "example": "42 MP, f/2.2, 17mm (ultrawide), PDAF"
+          },
+          "selfieVideoSpecs": {
+            "type": "string",
+            "example": "4K@30/60fps, 1080p@30/60fps"
+          },
+          "sensors": {
+            "type": "string",
+            "example": "Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer"
+          },
+          "charging_raw": {
+            "type": "string",
+            "example": "27W wired, PD3.0, PPS | 21W wireless"
+          },
+          "price_usd": {
+            "type": "number",
+            "example": 999.0
+          },
+          "price_eur": {
+            "type": "number",
+            "example": 1099.0
+          },
+          "price_gbp": {
+            "type": "number",
+            "example": 999.0
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Obsidian", "Porcelain", "Hazel"]
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceVariant"
+            }
+          },
+          "normalized_specs": {
+            "$ref": "#/components/schemas/NormalizedSpecs"
+          }
+        }
+      },
+      "DeviceVariant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "model_number": {
+            "type": "string",
+            "example": "GP8GD"
+          }
+        }
+      },
+      "NormalizedSpecs": {
+        "type": "object",
+        "properties": {
+          "display": {
+            "$ref": "#/components/schemas/DisplayMetrics"
+          },
+          "processor": {
+            "$ref": "#/components/schemas/CpuMetrics"
+          },
+          "memory_options": {
+            "$ref": "#/components/schemas/MemoryMetrics"
+          },
+          "battery_and_charging": {
+            "$ref": "#/components/schemas/PowerMetrics"
+          },
+          "cameras": {
+            "$ref": "#/components/schemas/CameraSummary"
+          },
+          "physical": {
+            "$ref": "#/components/schemas/PhysicalMetrics"
+          },
+          "sound": {
+            "$ref": "#/components/schemas/SoundMetrics"
+          },
+          "connectivity": {
+            "$ref": "#/components/schemas/ConnectivityMetrics"
+          },
+          "benchmarks": {
+            "$ref": "#/components/schemas/BenchmarkMetrics"
+          },
+          "eu_label": {
+            "$ref": "#/components/schemas/EuLabelMetrics"
+          }
+        }
+      },
+      "DisplayMetrics": {
+        "type": "object",
+        "properties": {
+          "size_inches": {
+            "type": "number",
+            "example": 6.3
+          },
+          "panel_type": {
+            "type": "string",
+            "example": "LTPO OLED"
+          },
+          "refresh_rate_hz": {
+            "type": "integer",
+            "example": 120
+          },
+          "peak_brightness_nits": {
+            "type": "integer",
+            "example": 3000
+          },
+          "protection_type": {
+            "type": "string",
+            "example": "Gorilla Glass Victus 2"
+          }
+        }
+      },
+      "CpuMetrics": {
+        "type": "object",
+        "properties": {
+          "total_cores": {
+            "type": "integer",
+            "example": 9
+          },
+          "max_clock_speed_ghz": {
+            "type": "number",
+            "example": 3.1
+          }
+        }
+      },
+      "MemoryMetrics": {
+        "type": "object",
+        "properties": {
+          "available_ram_gb": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [16]
+          },
+          "available_storage_gb": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [128, 256, 512, 1024]
+          },
+          "has_card_slot": {
+            "type": "boolean",
+            "example": false
+          },
+          "storage_technology": {
+            "type": "string",
+            "example": "UFS 4.0"
+          }
+        }
+      },
+      "PowerMetrics": {
+        "type": "object",
+        "properties": {
+          "capacities_mah": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [4700]
+          },
+          "max_wired_charging_w": {
+            "type": "integer",
+            "example": 27
+          },
+          "has_wireless_charging": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "CameraSummary": {
+        "type": "object",
+        "properties": {
+          "main_lenses_count": {
+            "type": "integer",
+            "example": 3
+          },
+          "max_main_resolution_mp": {
+            "type": "integer",
+            "example": 50
+          },
+          "selfie_lenses_count": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "PhysicalMetrics": {
+        "type": "object",
+        "properties": {
+          "height_mm": {
+            "type": "number",
+            "example": 152.8
+          },
+          "width_mm": {
+            "type": "number",
+            "example": 72.0
+          },
+          "thickness_mm": {
+            "type": "number",
+            "example": 8.5
+          },
+          "weight_g": {
+            "type": "integer",
+            "example": 199
+          },
+          "build_materials": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Glass front", "Glass back", "Aluminum frame"]
+          },
+          "sim_options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Nano-SIM", "eSIM"]
+          },
+          "ip_rating": {
+            "type": "string",
+            "example": "IP68"
+          },
+          "is_water_resistant": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "SoundMetrics": {
+        "type": "object",
+        "properties": {
+          "has_stereo_speakers": {
+            "type": "boolean",
+            "example": true
+          },
+          "has_jack_35mm": {
+            "type": "boolean",
+            "example": false
+          },
+          "audio_quality_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["24-bit/192kHz audio"]
+          }
+        }
+      },
+      "ConnectivityMetrics": {
+        "type": "object",
+        "properties": {
+          "wlan_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["Wi-Fi 802.11 a/b/g/n/ac/6e/7", "tri-band"]
+          },
+          "bluetooth_version": {
+            "type": "number",
+            "example": 5.3
+          },
+          "bluetooth_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["A2DP", "LE", "aptX HD"]
+          },
+          "positioning_tech": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["GPS", "GLONASS", "GALILEO"]
+          },
+          "has_nfc": {
+            "type": "boolean",
+            "example": true
+          },
+          "has_infrared": {
+            "type": "boolean",
+            "example": false
+          },
+          "has_radio": {
+            "type": "boolean",
+            "example": false
+          },
+          "usb_type": {
+            "type": "string",
+            "example": "USB Type-C 3.2"
+          },
+          "usb_has_otg": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "BenchmarkMetrics": {
+        "type": "object",
+        "properties": {
+          "antutu_score": {
+            "type": "string",
+            "example": "1150000 (v10)"
+          },
+          "geekbench_score": {
+            "type": "string",
+            "example": "1950 (single-core), 4700 (multi-core)"
+          },
+          "measured_display_brightness_nits": {
+            "type": "integer",
+            "example": 2050
+          },
+          "measured_loudspeaker_lufs": {
+            "type": "number",
+            "example": -24.5
+          },
+          "measured_battery_active_use_hours": {
+            "type": "number",
+            "example": 12.5
+          }
+        }
+      },
+      "EuLabelMetrics": {
+        "type": "object",
+        "properties": {
+          "energy_class": {
+            "type": "string",
+            "example": "A"
+          },
+          "battery_endurance": {
+            "type": "string",
+            "example": "84h"
+          },
+          "battery_endurance_hours": {
+            "type": "number",
+            "example": 84
+          },
+          "free_fall_class": {
+            "type": "string",
+            "example": "Class B"
+          },
+          "repairability_class": {
+            "type": "string",
+            "example": "Class A"
+          }
+        }
+      }
+    }
+  }
+}

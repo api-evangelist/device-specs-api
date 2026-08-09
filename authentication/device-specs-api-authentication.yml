@@ -1,0 +1,51 @@
+generated: '2026-08-09'
+method: searched
+source: openapi/device-specs-api-openapi-original.json
+docs: https://ds.gtgroup.dev/docs
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  gateway: RapidAPI
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  applied: global
+  note: >-
+    Both schemes are required together on every operation — the spec's top-level security block lists
+    RapidApiKey and RapidApiHost in the same requirement object (AND, not OR). Credentials are issued
+    and metered by RapidAPI; there is no provider-issued credential and no self-serve key on
+    ds.gtgroup.dev.
+schemes:
+- name: RapidApiKey
+  type: apiKey
+  in: header
+  parameter: x-rapidapi-key
+  description: Your personal RapidAPI key.
+  sources:
+  - openapi/device-specs-api-openapi-original.json
+- name: RapidApiHost
+  type: apiKey
+  in: header
+  parameter: x-rapidapi-host
+  description: >-
+    The RapidAPI gateway host the request routes to. The spec and docs say to set it to
+    'deviceultraparser.p.rapidapi.com'; that host root returns HTTP 404 "API doesn't exists" while
+    'gsmarenaparser.p.rapidapi.com' returns a real HTTP 401 (probed 2026-08-09).
+  sources:
+  - openapi/device-specs-api-openapi-original.json
+key_issuance:
+  url: https://rapidapi.com/controller2042000/api/gsmarenaparser
+  self_serve: true
+  free_tier: true
+  note: A RapidAPI account and a subscription (BASIC is $0) are required before any call succeeds.
+scopes:
+  supported: false
+  note: No OAuth, no scope model, no per-key permissioning documented. Access is all-or-nothing per subscription tier.
+rotation:
+  documented: false
+transport:
+  https_required: true
+  tls_version_observed: TLSv1.2
+  observed_host: gsmarenaparser.p.rapidapi.com

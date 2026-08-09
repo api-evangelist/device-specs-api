@@ -1,0 +1,88 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Device Specs API
+providerId: device-specs-api
+created: '2026-08-09'
+modified: '2026-08-09'
+generated: '2026-08-09'
+method: searched
+tags:
+  - Rate Limiting
+  - Reference Data
+  - Mobile
+description: >-
+  Rate limits are enforced by the RapidAPI gateway and published per subscription tier on the
+  provider's pricing page. Each tier carries both a burst rate limit and a hard quota, plus a
+  bandwidth allowance. No X-RateLimit-* response headers are documented by the provider.
+sources:
+  - https://ds.gtgroup.dev/pricing
+  - https://ds.gtgroup.dev/llms.txt
+headers:
+  requestId: null
+  limit: null
+  remaining: null
+  reset: null
+responseCodes:
+  throttled: 429
+limits:
+  - name: BASIC burst rate
+    plan: BASIC
+    scope: subscription
+    metric: requests_per_minute
+    limit: 20
+    timeFrame: minute
+  - name: BASIC quota
+    plan: BASIC
+    scope: subscription
+    metric: requests
+    limit: 15
+    timeFrame: day
+  - name: PRO burst rate
+    plan: PRO
+    scope: subscription
+    metric: requests_per_second
+    limit: 5
+    timeFrame: second
+  - name: PRO quota
+    plan: PRO
+    scope: subscription
+    metric: requests
+    limit: 10000
+    timeFrame: month
+  - name: ULTRA burst rate
+    plan: ULTRA
+    scope: subscription
+    metric: requests_per_second
+    limit: 10
+    timeFrame: second
+  - name: ULTRA quota
+    plan: ULTRA
+    scope: subscription
+    metric: requests
+    limit: 25000
+    timeFrame: month
+  - name: MEGA burst rate
+    plan: MEGA
+    scope: subscription
+    metric: requests_per_second
+    limit: 20
+    timeFrame: second
+  - name: MEGA quota
+    plan: MEGA
+    scope: subscription
+    metric: requests
+    limit: 500000
+    timeFrame: month
+  - name: Bandwidth allowance (all tiers)
+    plan: all
+    scope: subscription
+    metric: gigabytes
+    limit: 10
+    timeFrame: month
+notes:
+  - BASIC, PRO and ULTRA bill overage above quota; MEGA enforces a hard quota cap with no overage.
+  - >-
+    A discrepancy exists between two provider surfaces: /.well-known/api-onboarding lists ULTRA at
+    "$2.99/mo Special Promo" with no numeric quota, while /pricing and /llms.txt list ULTRA at $7.99
+    with 25,000 requests/month. The numbers above follow /pricing, which is the buyer-facing page.

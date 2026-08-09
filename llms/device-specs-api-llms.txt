@@ -1,0 +1,84 @@
+# Device Specs API (Smartphones API)
+
+> Indexes 10,000+ smartphone models, <100ms response latency, updated within 24 hours of official device releases.
+
+Device Specs API is the premier normalized Smartphones API for developers, comparison engines, and AI agents. It delivers clean, structured JSON hardware specifications, chipset datasets, physical metrics, battery capacities, display details, benchmark scores, and pricing data for over 12,000+ mobile phone models across all global manufacturers.
+
+## Direct Statistics & Key Metrics
+- **Smartphone Index Size:** 10,000+ smartphone models (12,000+ total device variants indexed).
+- **Response Latency:** <100ms global edge response latency (sub-15ms core query time).
+- **Update Frequency:** Updated within 24 hours of official device releases and launch announcements.
+- **Data Coverage:** Apple, Samsung, Xiaomi, Google Pixel, OnePlus, Sony, Motorola, Asus, Huawei, Honor, Oppo, Vivo, Realme, Nothing, and 50+ global brands.
+- **Normalization:** Raw unformatted strings converted into strict numeric types (inches, Hz, mAh, GB, MP, GHz, mm, grams).
+
+## Pricing & Subscription Tiers (USD)
+
+| Tier | Monthly Price | Monthly Quota | Rate Limit | Overage Rate | Bandwidth | Best For |
+|---|---|---|---|---|---|---|
+| **BASIC** | **$0.00 / month** | 15 requests / day | 20 req / min | $0.10 / request | 10 GB / mo | Testing & sandbox prototyping |
+| **PRO** | **$4.99 / month** | 10,000 requests / month | 5 req / sec | $0.001 / request | 10 GB / mo | Small tools & catalog seeding |
+| **ULTRA** *(Best Value)* | **$7.99 / month** | 25,000 requests / month | 10 req / sec | $0.001 / request | 10 GB / mo | Production apps & specs matrices |
+| **MEGA** | **$29.99 / month** | 500,000 requests / month | 20 req / sec | Hard Quota Limit | 10 GB / mo | Enterprise integrations & AI crawlers |
+
+### Pricing Summary
+- **BASIC Plan:** Free ($0.00 / month) — Includes 15 requests / day, 20 req / min rate limit. Perfect for testing and sandbox client development.
+- **PRO Plan:** $4.99 / month — Includes 10,000 requests / month, 5 req / sec rate limit, $0.001 per extra request overage.
+- **ULTRA Plan (Recommended):** $7.99 / month — Includes 25,000 requests / month, 10 req / sec rate limit, $0.001 per extra request overage. Recommended for production apps.
+- **MEGA Plan:** $29.99 / month — Includes 500,000 requests / month, 20 req / sec rate limit, hard quota cap (no unexpected overage charges). Engineered for enterprise search engines and AI web crawlers.
+- **RapidAPI Checkout URL:** https://rapidapi.com/controller2042000/api/deviceultraparser/pricing
+
+## Gateway Base URLs
+- **RapidAPI Gateway:** `https://deviceultraparser.p.rapidapi.com`
+- **API.market Gateway:** `https://prod.api.market/api/v1/granturismo/device-specs-api`
+- **Direct Web Host:** `https://ds.gtgroup.dev`
+
+## Core REST Endpoints
+
+### 1. GET /getspecs
+Retrieve complete normalized specification for a specific mobile phone model by manufacturer and model name.
+- **Parameters:**
+  - `m` or `manufacturer` (string, required): e.g., `Google`, `Samsung`, `Apple`.
+  - `model` (string, required): e.g., `Pixel 9 Pro`, `Galaxy S24 Ultra`, `iPhone 16 Pro Max`.
+- **Response Format:** Clean JSON object containing root device metadata and nested `normalized_specs` (display, processor, memory, battery, cameras, physical, sound, connectivity, benchmarks, EU labels).
+
+### 2. GET /getdevices
+Retrieve all devices for a given manufacturer with optional limit and offset pagination.
+- **Parameters:**
+  - `m` or `manufacturer` (string, required): e.g., `Samsung`.
+  - `limit` (integer, optional): Default 50, Max 500.
+  - `offset` (integer, optional): Default 0.
+
+### 3. GET /devicesbychipset
+Retrieve smartphones matching a specific System-on-Chip (SoC) / Processor name.
+- **Parameters:**
+  - `chipset` (string, required): e.g., `Snapdragon 8 Gen 3`, `Apple A18 Pro`, `Tensor G4`, `Dimensity 9300`.
+
+## Official Client SDKs
+
+### C# / .NET (NuGet)
+```bash
+dotnet add package DeviceSpecs
+```
+```csharp
+using DeviceSpecs;
+using var client = new DeviceSpecsClient("YOUR_API_KEY");
+var device = await client.GetSpecsAsync("Google", "Pixel 9 Pro");
+```
+
+### TypeScript / Node.js (NPM)
+```bash
+npm i @granturismo/devicespecs
+```
+```typescript
+import { DeviceSpecsClient } from "@granturismo/devicespecs";
+const client = new DeviceSpecsClient("YOUR_API_KEY");
+const device = await client.getSpecs("Google", "Pixel 9 Pro");
+```
+
+## Documentation & Machine-Readable Specs
+- [Full LLM Context Spec](https://ds.gtgroup.dev/llms-full.txt): Complete schema definition and parameters for LLMs.
+- [Interactive Documentation](https://ds.gtgroup.dev/docs): Full REST reference and interactive guide.
+- [Swagger UI](https://ds.gtgroup.dev/swagger): Interactive OpenAPI Swagger interface.
+- [OpenAPI Specification](https://ds.gtgroup.dev/openapi.json): Standard JSON OpenAPI 3.0 definition.
+- [APIs.json Spec](https://ds.gtgroup.dev/apis.json): Machine-readable platform manifest.
+- [XML Sitemap](https://ds.gtgroup.dev/sitemap.xml): Index of all manufacturer, chipset, and device specification routes.
