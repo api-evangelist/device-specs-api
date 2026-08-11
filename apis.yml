@@ -28,44 +28,28 @@ tags:
   - reference-data
   - developer-tools
 apis:
-  - name: Device Specs API
-    description: >-
-      REST API for normalized mobile-device specifications, fronted by the RapidAPI gateway. Provides
-      device specs by manufacturer/model, devices by brand, devices by chipset, and a query-param deep
-      filter engine over the normalized metrics. Auth via RapidAPI key headers (x-rapidapi-key,
-      x-rapidapi-host). Read-only — all four published operations are GET.
-    humanURL: https://ds.gtgroup.dev/docs
-    baseURL: https://gsmarenaparser.p.rapidapi.com
-    image: https://ds.gtgroup.dev/favicon.png
-    tags:
-      - mobile
-      - smartphones
-      - phone-specs
-      - chipsets
-      - hardware
-      - mobile-specs
-      - devices
-      - rapidapi
-      - gsmarena
-      - reference-data
-      - developer-tools
-    properties:
-      - type: OpenAPI
-        url: openapi/device-specs-api-openapi-original.json
-      - type: OpenAPI Source
-        url: https://ds.gtgroup.dev/openapi.json
-      - type: Overlay
-        url: overlays/device-specs-api-openapi-overlay.yaml
-      - type: Documentation
-        url: https://ds.gtgroup.dev/docs
-      - type: APIReference
-        url: https://ds.gtgroup.dev/swagger
-      - type: GettingStarted
-        url: https://ds.gtgroup.dev/docs
-      - type: Authentication
-        url: authentication/device-specs-api-authentication.yml
-      - type: ErrorCatalog
-        url: errors/device-specs-api-problem-types.yml
+- aid: device-specs-api:device-specs-api-values-api
+  name: Device Specs API Values API
+  description: The Values API from Device Specs API — 4 operation(s) for values.
+  humanURL: https://ds.gtgroup.dev/docs
+  baseURL: https://gsmarenaparser.p.rapidapi.com
+  tags:
+  - Values
+  properties:
+  - type: OpenAPI
+    url: openapi/device-specs-api-values-api-openapi.yml
+  - type: OpenAPI Source
+    url: https://ds.gtgroup.dev/openapi.json
+  - type: Documentation
+    url: https://ds.gtgroup.dev/docs
+  - type: APIReference
+    url: https://ds.gtgroup.dev/swagger
+  - type: GettingStarted
+    url: https://ds.gtgroup.dev/docs
+  - type: Authentication
+    url: authentication/device-specs-api-authentication.yml
+  - type: ErrorCatalog
+    url: errors/device-specs-api-problem-types.yml
 maintainers:
   - FN: GranTurismo Engineering
     email: kupatadze2000@outlook.com
@@ -76,6 +60,10 @@ generated:
   confidence: 95
   at: '2026-07-27T16:06:00.679Z'
 common:
+- type: MCPServer
+  url: mcp/device-specs-api-mcp.yml
+- type: Overlay
+  url: overlays/device-specs-api-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://ds.gtgroup.dev/
 - type: Documentation
