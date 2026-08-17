@@ -11,7 +11,7 @@ description: >-
   GranTurismo Engineering, distributed and metered through the RapidAPI marketplace with a free
   BASIC tier.
 image: https://ds.gtgroup.dev/favicon.png
-url: https://device-specs-api.apievangelist.com/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/device-specs-api/refs/heads/main/apis.yml
 created: '2026-07-27'
 modified: '2026-08-09'
 specificationVersion: '0.21'
