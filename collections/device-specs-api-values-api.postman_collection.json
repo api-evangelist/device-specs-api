@@ -1,0 +1,762 @@
+{
+  "item": [
+    {
+      "id": "66f0f8e1-8c28-4439-a910-2e3e12f02f4f",
+      "name": "Values",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "915f0f38-979c-466d-a8dd-3f0e780c056a",
+          "name": "List and Filter Devices",
+          "request": {
+            "name": "List and Filter Devices",
+            "description": {
+              "content": "Retrieve a list of mobile devices matching the specified filter parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "values",
+                "clean",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "battery_gte",
+                  "value": "<integer>",
+                  "description": "Filter devices with battery capacity greater than or equal to this value (in mAh)."
+                },
+                {
+                  "disabled": false,
+                  "key": "chipset_contains",
+                  "value": "<string>",
+                  "description": "Substring match for the chipset name (e.g. Snapdragon, Tensor)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ram_between",
+                  "value": "<string>",
+                  "description": "Range filter for RAM (e.g. \"8,12\" for between 8GB and 12GB)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4dfcf0f-f379-4b26-a7b2-9aaa1630f43d",
+              "name": "A list of device specifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_gte",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "chipset_contains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ram_between",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  },\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "566d4366-8bca-46c2-90c8-9470d4856443",
+              "name": "Unauthorized. Missing or invalid RapidAPI key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_gte",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "chipset_contains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ram_between",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ca917c1-1f7a-40b4-b694-3c1a8b1af91a",
+          "name": "Get Devices by Manufacturer",
+          "request": {
+            "name": "Get Devices by Manufacturer",
+            "description": {
+              "content": "Retrieve all tracked mobile devices from a specific manufacturer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "values",
+                "clean",
+                "getdevices",
+                ":manufacturer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "manufacturer",
+                  "description": "(Required) The name of the manufacturer (e.g. Google, Samsung, Apple)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07cd08dc-522a-42e6-ac2f-e457cf3c8c2e",
+              "name": "A list of device specifications for the manufacturer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "getdevices",
+                    ":manufacturer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manufacturer",
+                      "description": "(Required) The name of the manufacturer (e.g. Google, Samsung, Apple)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  },\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "147cfd28-8a60-4620-af76-bb1a162f04ac",
+              "name": "Unauthorized. Missing or invalid RapidAPI key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "getdevices",
+                    ":manufacturer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manufacturer",
+                      "description": "(Required) The name of the manufacturer (e.g. Google, Samsung, Apple)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73579c76-3fc9-4f07-8c99-a2d73feeb61d",
+          "name": "Get Devices by Chipset",
+          "request": {
+            "name": "Get Devices by Chipset",
+            "description": {
+              "content": "Retrieve all mobile devices powered by a specific SoC/chipset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "values",
+                "clean",
+                "devicesbychipset",
+                ":chipset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chipset",
+                  "description": "(Required) The URL-friendly chipset name (e.g. Tensor-G4, Snapdragon-8-Gen-3)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75c478ef-395f-424e-91c0-c72c7d93571c",
+              "name": "A list of devices powered by the specified chipset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "devicesbychipset",
+                    ":chipset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chipset",
+                      "description": "(Required) The URL-friendly chipset name (e.g. Tensor-G4, Snapdragon-8-Gen-3)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  },\n  {\n    \"id\": 4820,\n    \"manufacturer\": \"Google\",\n    \"model\": \"Pixel 9 Pro\",\n    \"network\": \"GSM / HSPA / LTE / 5G\",\n    \"announceDate\": \"2024, August 13\",\n    \"status\": \"Available. Released 2024, September 04\",\n    \"chipset\": \"Google Tensor G4 (4 nm)\",\n    \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n    \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n    \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n    \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n    \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n    \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n    \"gpu\": \"Mali-G715 MC7\",\n    \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n    \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n    \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n    \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n    \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n    \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n    \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n    \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n    \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n    \"price_usd\": 999,\n    \"price_eur\": 1099,\n    \"price_gbp\": 999,\n    \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n    \"colors\": [\n      \"Obsidian\",\n      \"Porcelain\",\n      \"Hazel\"\n    ],\n    \"variants\": [\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      },\n      {\n        \"id\": 1,\n        \"model_number\": \"GP8GD\"\n      }\n    ],\n    \"normalized_specs\": {\n      \"display\": {\n        \"size_inches\": 6.3,\n        \"panel_type\": \"LTPO OLED\",\n        \"refresh_rate_hz\": 120,\n        \"peak_brightness_nits\": 3000,\n        \"protection_type\": \"Gorilla Glass Victus 2\"\n      },\n      \"processor\": {\n        \"total_cores\": 9,\n        \"max_clock_speed_ghz\": 3.1\n      },\n      \"memory_options\": {\n        \"available_ram_gb\": [\n          16\n        ],\n        \"available_storage_gb\": [\n          128,\n          256,\n          512,\n          1024\n        ],\n        \"has_card_slot\": false,\n        \"storage_technology\": \"UFS 4.0\"\n      },\n      \"battery_and_charging\": {\n        \"capacities_mah\": [\n          4700\n        ],\n        \"max_wired_charging_w\": 27,\n        \"has_wireless_charging\": true\n      },\n      \"cameras\": {\n        \"main_lenses_count\": 3,\n        \"max_main_resolution_mp\": 50,\n        \"selfie_lenses_count\": 1\n      },\n      \"physical\": {\n        \"height_mm\": 152.8,\n        \"width_mm\": 72,\n        \"thickness_mm\": 8.5,\n        \"weight_g\": 199,\n        \"build_materials\": [\n          \"Glass front\",\n          \"Glass back\",\n          \"Aluminum frame\"\n        ],\n        \"sim_options\": [\n          \"Nano-SIM\",\n          \"eSIM\"\n        ],\n        \"ip_rating\": \"IP68\",\n        \"is_water_resistant\": true\n      },\n      \"sound\": {\n        \"has_stereo_speakers\": true,\n        \"has_jack_35mm\": false,\n        \"audio_quality_features\": [\n          \"24-bit/192kHz audio\"\n        ]\n      },\n      \"connectivity\": {\n        \"wlan_features\": [\n          \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n          \"tri-band\"\n        ],\n        \"bluetooth_version\": 5.3,\n        \"bluetooth_features\": [\n          \"A2DP\",\n          \"LE\",\n          \"aptX HD\"\n        ],\n        \"positioning_tech\": [\n          \"GPS\",\n          \"GLONASS\",\n          \"GALILEO\"\n        ],\n        \"has_nfc\": true,\n        \"has_infrared\": false,\n        \"has_radio\": false,\n        \"usb_type\": \"USB Type-C 3.2\",\n        \"usb_has_otg\": true\n      },\n      \"benchmarks\": {\n        \"antutu_score\": \"1150000 (v10)\",\n        \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n        \"measured_display_brightness_nits\": 2050,\n        \"measured_loudspeaker_lufs\": -24.5,\n        \"measured_battery_active_use_hours\": 12.5\n      },\n      \"eu_label\": {\n        \"energy_class\": \"A\",\n        \"battery_endurance\": \"84h\",\n        \"battery_endurance_hours\": 84,\n        \"free_fall_class\": \"Class B\",\n        \"repairability_class\": \"Class A\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e870dca-fd8b-4070-ab57-ad96653175ff",
+              "name": "Unauthorized. Missing or invalid RapidAPI key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "devicesbychipset",
+                    ":chipset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chipset",
+                      "description": "(Required) The URL-friendly chipset name (e.g. Tensor-G4, Snapdragon-8-Gen-3)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4535f32-83ec-4794-8aec-a6a95ed4235e",
+          "name": "Get Specific Device Specifications",
+          "request": {
+            "name": "Get Specific Device Specifications",
+            "description": {
+              "content": "Retrieve the detailed specifications (both raw and normalized) for a specific device model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "values",
+                "clean",
+                "getspecs",
+                ":manufacturer",
+                ":model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "manufacturer",
+                  "description": "(Required) The name of the manufacturer (e.g. Google)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) The model name of the device (e.g. Pixel-9-Pro)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b522c94-e14e-4954-9a30-21269308d108",
+              "name": "The detailed specifications of the specified device.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "getspecs",
+                    ":manufacturer",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manufacturer",
+                      "description": "(Required) The name of the manufacturer (e.g. Google)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The model name of the device (e.g. Pixel-9-Pro)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4820,\n  \"manufacturer\": \"Google\",\n  \"model\": \"Pixel 9 Pro\",\n  \"network\": \"GSM / HSPA / LTE / 5G\",\n  \"announceDate\": \"2024, August 13\",\n  \"status\": \"Available. Released 2024, September 04\",\n  \"chipset\": \"Google Tensor G4 (4 nm)\",\n  \"androidVersion\": \"Android 14, up to 7 major OS upgrades\",\n  \"battery_raw\": \"Li-Ion 4700 mAh, non-removable\",\n  \"cpu_raw\": \"Octa-core (1x3.1 GHz Cortex-X4 & 3x2.6 GHz Cortex-A720 & 4x1.92 GHz Cortex-A520)\",\n  \"displayResolution_raw\": \"1280 x 2856 pixels, 20:9 ratio (~495 ppi density)\",\n  \"displaySize_raw\": \"6.3 inches, 94.7 cm2 (~86.1% screen-to-body ratio)\",\n  \"displayType_raw\": \"LTPO OLED, 120Hz, HDR10+, 2000 nits (HBM), 3000 nits (peak)\",\n  \"gpu\": \"Mali-G715 MC7\",\n  \"internal_raw\": \"128GB 16GB RAM, 256GB 16GB RAM, 512GB 16GB RAM, 1TB 16GB RAM\",\n  \"mainCameraFeatures\": \"LED flash, Pixel Shift, Ultra-HDR, panorama, Best Take\",\n  \"mainCameraSpecs_raw\": \"50 MP (wide) | 48 MP (telephoto) | 48 MP (ultrawide)\",\n  \"mainVideoSpecs\": \"8K@30fps, 4K@24/30/60fps, 1080p@24/30/60/120/240fps\",\n  \"selfieCameraFeatures\": \"Auto-HDR, panorama\",\n  \"selfieCameraSpecs_raw\": \"42 MP, f/2.2, 17mm (ultrawide), PDAF\",\n  \"selfieVideoSpecs\": \"4K@30/60fps, 1080p@30/60fps\",\n  \"sensors\": \"Fingerprint (under display, ultrasonic), accelerometer, gyro, compass, barometer\",\n  \"charging_raw\": \"27W wired, PD3.0, PPS | 21W wireless\",\n  \"price_usd\": 999,\n  \"price_eur\": 1099,\n  \"price_gbp\": 999,\n  \"imageUrl\": \"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro.jpg\",\n  \"colors\": [\n    \"Obsidian\",\n    \"Porcelain\",\n    \"Hazel\"\n  ],\n  \"variants\": [\n    {\n      \"id\": 1,\n      \"model_number\": \"GP8GD\"\n    },\n    {\n      \"id\": 1,\n      \"model_number\": \"GP8GD\"\n    }\n  ],\n  \"normalized_specs\": {\n    \"display\": {\n      \"size_inches\": 6.3,\n      \"panel_type\": \"LTPO OLED\",\n      \"refresh_rate_hz\": 120,\n      \"peak_brightness_nits\": 3000,\n      \"protection_type\": \"Gorilla Glass Victus 2\"\n    },\n    \"processor\": {\n      \"total_cores\": 9,\n      \"max_clock_speed_ghz\": 3.1\n    },\n    \"memory_options\": {\n      \"available_ram_gb\": [\n        16\n      ],\n      \"available_storage_gb\": [\n        128,\n        256,\n        512,\n        1024\n      ],\n      \"has_card_slot\": false,\n      \"storage_technology\": \"UFS 4.0\"\n    },\n    \"battery_and_charging\": {\n      \"capacities_mah\": [\n        4700\n      ],\n      \"max_wired_charging_w\": 27,\n      \"has_wireless_charging\": true\n    },\n    \"cameras\": {\n      \"main_lenses_count\": 3,\n      \"max_main_resolution_mp\": 50,\n      \"selfie_lenses_count\": 1\n    },\n    \"physical\": {\n      \"height_mm\": 152.8,\n      \"width_mm\": 72,\n      \"thickness_mm\": 8.5,\n      \"weight_g\": 199,\n      \"build_materials\": [\n        \"Glass front\",\n        \"Glass back\",\n        \"Aluminum frame\"\n      ],\n      \"sim_options\": [\n        \"Nano-SIM\",\n        \"eSIM\"\n      ],\n      \"ip_rating\": \"IP68\",\n      \"is_water_resistant\": true\n    },\n    \"sound\": {\n      \"has_stereo_speakers\": true,\n      \"has_jack_35mm\": false,\n      \"audio_quality_features\": [\n        \"24-bit/192kHz audio\"\n      ]\n    },\n    \"connectivity\": {\n      \"wlan_features\": [\n        \"Wi-Fi 802.11 a/b/g/n/ac/6e/7\",\n        \"tri-band\"\n      ],\n      \"bluetooth_version\": 5.3,\n      \"bluetooth_features\": [\n        \"A2DP\",\n        \"LE\",\n        \"aptX HD\"\n      ],\n      \"positioning_tech\": [\n        \"GPS\",\n        \"GLONASS\",\n        \"GALILEO\"\n      ],\n      \"has_nfc\": true,\n      \"has_infrared\": false,\n      \"has_radio\": false,\n      \"usb_type\": \"USB Type-C 3.2\",\n      \"usb_has_otg\": true\n    },\n    \"benchmarks\": {\n      \"antutu_score\": \"1150000 (v10)\",\n      \"geekbench_score\": \"1950 (single-core), 4700 (multi-core)\",\n      \"measured_display_brightness_nits\": 2050,\n      \"measured_loudspeaker_lufs\": -24.5,\n      \"measured_battery_active_use_hours\": 12.5\n    },\n    \"eu_label\": {\n      \"energy_class\": \"A\",\n      \"battery_endurance\": \"84h\",\n      \"battery_endurance_hours\": 84,\n      \"free_fall_class\": \"Class B\",\n      \"repairability_class\": \"Class A\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3af1d663-2c32-4009-9055-2b1223bbe5ba",
+              "name": "Unauthorized. Missing or invalid RapidAPI key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "getspecs",
+                    ":manufacturer",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manufacturer",
+                      "description": "(Required) The name of the manufacturer (e.g. Google)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The model name of the device (e.g. Pixel-9-Pro)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c528b110-fa43-426c-bbce-fb2d79ab3d47",
+              "name": "Device not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "values",
+                    "clean",
+                    "getspecs",
+                    ":manufacturer",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manufacturer",
+                      "description": "(Required) The name of the manufacturer (e.g. Google)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The model name of the device (e.g. Pixel-9-Pro)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-rapidapi-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-rapidapi-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b50d4c26-c7f3-4b76-a105-ab2c5dcde002",
+    "name": "Device Specs Values API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access structured, clean, and normalized mobile phone specifications, chipsets, and physical metrics. Sourced dynamically and formatted in standardized JSON, perfect for database seeding, application schemas, and AI/LLM model context windows.\n\nContact Support:\n Name: GranTurismo Support",
+      "type": "text/plain"
+    }
+  }
+}

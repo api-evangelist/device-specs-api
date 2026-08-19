@@ -2,48 +2,56 @@ generated: '2026-08-09'
 method: derived
 status: candidate
 source: openapi/device-specs-api-openapi-original.json
-description: >-
-  Device Specs API publishes NO hosted or remote MCP server. This file is a DERIVED candidate tool
-  list computed from the four published OpenAPI operations — a design proposal for the provider, not
-  a server that exists. No MCPServer pointer is wired into apis.yml, because wiring one would assert
+description: Device Specs API publishes NO hosted or remote MCP server. This file is a DERIVED candidate
+  tool list computed from the four published OpenAPI operations — a design proposal for the provider,
+  not a server that exists. No MCPServer pointer is wired into apis.yml, because wiring one would assert
   an agent surface the provider does not operate.
 search:
   hosted_server_found: false
   probes:
-    - {url: "https://ds.gtgroup.dev/mcp", http_status: 404}
-    - {url: "https://ds.gtgroup.dev/.well-known/mcp.json", http_status: 404}
-    - {url: "https://ds.gtgroup.dev/.well-known/oauth-authorization-server", http_status: 404}
-    - {url: "https://ds.gtgroup.dev/.well-known/oauth-protected-resource", http_status: 404}
+  - url: https://ds.gtgroup.dev/mcp
+    http_status: 404
+  - url: https://ds.gtgroup.dev/.well-known/mcp.json
+    http_status: 404
+  - url: https://ds.gtgroup.dev/.well-known/oauth-authorization-server
+    http_status: 404
+  - url: https://ds.gtgroup.dev/.well-known/oauth-protected-resource
+    http_status: 404
   registries_checked:
-    - npm @modelcontextprotocol scope
-    - the provider's GitHub account (github.com/GranTurismo — 21 public repos, three are the DeviceSpecs SDKs, none is an MCP server)
-  note: >-
-    The provider markets the API as "AI-agent friendly" and ships llms.txt, llms-full.txt and an
-    AI-crawler-permissive robots.txt, but the apis.json `prompts[].AgentPrompt` entry merely links to
-    the human documentation page. There is no MCP, no A2A agent card and no packaged agent skill from
-    the provider.
+  - npm @modelcontextprotocol scope
+  - the provider's GitHub account (github.com/GranTurismo — 21 public repos, three are the DeviceSpecs
+    SDKs, none is an MCP server)
+  note: The provider markets the API as "AI-agent friendly" and ships llms.txt, llms-full.txt and an AI-crawler-permissive
+    robots.txt, but the apis.json `prompts[].AgentPrompt` entry merely links to the human documentation
+    page. There is no MCP, no A2A agent card and no packaged agent skill from the provider.
 server: null
 tools:
-  - name: list_devices
-    description: List and filter devices using the deep query filter grammar (battery, ram, chipset, price, display and boolean feature filters).
-    source_operation: "openapi/device-specs-api-openapi-original.json#GET /api/values/clean/devices"
-    proposed_operation_id: listDevices
-    read_only: true
-  - name: get_devices_by_manufacturer
-    description: List every tracked device from one manufacturer.
-    source_operation: "openapi/device-specs-api-openapi-original.json#GET /api/values/clean/getdevices/{manufacturer}"
-    proposed_operation_id: getDevicesByManufacturer
-    read_only: true
-  - name: get_devices_by_chipset
-    description: List every device powered by a given System-on-Chip.
-    source_operation: "openapi/device-specs-api-openapi-original.json#GET /api/values/clean/devicesbychipset/{chipset}"
-    proposed_operation_id: getDevicesByChipset
-    read_only: true
-  - name: get_device_specs
-    description: Retrieve the full raw and normalized specification record for one device model.
-    source_operation: "openapi/device-specs-api-openapi-original.json#GET /api/values/clean/getspecs/{manufacturer}/{model}"
-    proposed_operation_id: getDeviceSpecs
-    read_only: true
-note: >-
-  operationIds are proposals from overlays/device-specs-api-openapi-overlay.yaml — the published spec
+- name: list_devices
+  description: List and filter devices using the deep query filter grammar (battery, ram, chipset, price,
+    display and boolean feature filters).
+  source_operation: openapi/device-specs-api-openapi-original.json#GET /api/values/clean/devices
+  proposed_operation_id: listDevices
+  read_only: true
+- name: get_devices_by_manufacturer
+  description: List every tracked device from one manufacturer.
+  source_operation: openapi/device-specs-api-openapi-original.json#GET /api/values/clean/getdevices/{manufacturer}
+  proposed_operation_id: getDevicesByManufacturer
+  read_only: true
+- name: get_devices_by_chipset
+  description: List every device powered by a given System-on-Chip.
+  source_operation: openapi/device-specs-api-openapi-original.json#GET /api/values/clean/devicesbychipset/{chipset}
+  proposed_operation_id: getDevicesByChipset
+  read_only: true
+- name: get_device_specs
+  description: Retrieve the full raw and normalized specification record for one device model.
+  source_operation: openapi/device-specs-api-openapi-original.json#GET /api/values/clean/getspecs/{manufacturer}/{model}
+  proposed_operation_id: getDeviceSpecs
+  read_only: true
+note: operationIds are proposals from overlays/device-specs-api-openapi-overlay.yaml — the published spec
   declares none, so a generated MCP server would have to invent tool names today.
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census
