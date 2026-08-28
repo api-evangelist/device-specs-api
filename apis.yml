@@ -10,6 +10,18 @@ description: >-
   has, gt, gte, lt, lte and between across roughly 25 property aliases. Built and maintained by
   GranTurismo Engineering, distributed and metered through the RapidAPI marketplace with a free
   BASIC tier.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://ds.gtgroup.dev/favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/device-specs-api/refs/heads/main/apis.yml
 created: '2026-07-27'
