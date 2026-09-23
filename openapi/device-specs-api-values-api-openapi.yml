@@ -54,6 +54,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
       - Values
+      operationId: getApiValuesCleanDevices
+      x-operation-id-source: derived
   /api/values/clean/getdevices/{manufacturer}:
     get:
       summary: Get Devices by Manufacturer
@@ -78,6 +80,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
       - Values
+      operationId: getApiValuesCleanGetdevicesByManufacturer
+      x-operation-id-source: derived
   /api/values/clean/devicesbychipset/{chipset}:
     get:
       summary: Get Devices by Chipset
@@ -102,6 +106,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
       - Values
+      operationId: getApiValuesCleanDevicesbychipsetByChipset
+      x-operation-id-source: derived
   /api/values/clean/getspecs/{manufacturer}/{model}:
     get:
       summary: Get Specific Device Specifications
@@ -132,8 +138,45 @@ paths:
           description: Device not found.
       tags:
       - Values
+      operationId: getApiValuesCleanGetspecsByManufacturerByModel
+      x-operation-id-source: derived
 components:
   schemas:
+    CameraSummary:
+      type: object
+      properties:
+        main_lenses_count:
+          type: integer
+          example: 3
+        max_main_resolution_mp:
+          type: integer
+          example: 50
+        selfie_lenses_count:
+          type: integer
+          example: 1
+    NormalizedSpecs:
+      type: object
+      properties:
+        display:
+          $ref: '#/components/schemas/DisplayMetrics'
+        processor:
+          $ref: '#/components/schemas/CpuMetrics'
+        memory_options:
+          $ref: '#/components/schemas/MemoryMetrics'
+        battery_and_charging:
+          $ref: '#/components/schemas/PowerMetrics'
+        cameras:
+          $ref: '#/components/schemas/CameraSummary'
+        physical:
+          $ref: '#/components/schemas/PhysicalMetrics'
+        sound:
+          $ref: '#/components/schemas/SoundMetrics'
+        connectivity:
+          $ref: '#/components/schemas/ConnectivityMetrics'
+        benchmarks:
+          $ref: '#/components/schemas/BenchmarkMetrics'
+        eu_label:
+          $ref: '#/components/schemas/EuLabelMetrics'
     DeviceSpecsResponse:
       type: object
       properties:
@@ -232,47 +275,15 @@ components:
             $ref: '#/components/schemas/DeviceVariant'
         normalized_specs:
           $ref: '#/components/schemas/NormalizedSpecs'
-    EuLabelMetrics:
+    DeviceVariant:
       type: object
       properties:
-        energy_class:
+        id:
+          type: integer
+          example: 1
+        model_number:
           type: string
-          example: A
-        battery_endurance:
-          type: string
-          example: 84h
-        battery_endurance_hours:
-          type: number
-          example: 84
-        free_fall_class:
-          type: string
-          example: Class B
-        repairability_class:
-          type: string
-          example: Class A
-    NormalizedSpecs:
-      type: object
-      properties:
-        display:
-          $ref: '#/components/schemas/DisplayMetrics'
-        processor:
-          $ref: '#/components/schemas/CpuMetrics'
-        memory_options:
-          $ref: '#/components/schemas/MemoryMetrics'
-        battery_and_charging:
-          $ref: '#/components/schemas/PowerMetrics'
-        cameras:
-          $ref: '#/components/schemas/CameraSummary'
-        physical:
-          $ref: '#/components/schemas/PhysicalMetrics'
-        sound:
-          $ref: '#/components/schemas/SoundMetrics'
-        connectivity:
-          $ref: '#/components/schemas/ConnectivityMetrics'
-        benchmarks:
-          $ref: '#/components/schemas/BenchmarkMetrics'
-        eu_label:
-          $ref: '#/components/schemas/EuLabelMetrics'
+          example: GP8GD
     MemoryMetrics:
       type: object
       properties:
@@ -297,84 +308,6 @@ components:
         storage_technology:
           type: string
           example: UFS 4.0
-    DeviceVariant:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        model_number:
-          type: string
-          example: GP8GD
-    CameraSummary:
-      type: object
-      properties:
-        main_lenses_count:
-          type: integer
-          example: 3
-        max_main_resolution_mp:
-          type: integer
-          example: 50
-        selfie_lenses_count:
-          type: integer
-          example: 1
-    CpuMetrics:
-      type: object
-      properties:
-        total_cores:
-          type: integer
-          example: 9
-        max_clock_speed_ghz:
-          type: number
-          example: 3.1
-    PowerMetrics:
-      type: object
-      properties:
-        capacities_mah:
-          type: array
-          items:
-            type: integer
-          example:
-          - 4700
-        max_wired_charging_w:
-          type: integer
-          example: 27
-        has_wireless_charging:
-          type: boolean
-          example: true
-    BenchmarkMetrics:
-      type: object
-      properties:
-        antutu_score:
-          type: string
-          example: 1150000 (v10)
-        geekbench_score:
-          type: string
-          example: 1950 (single-core), 4700 (multi-core)
-        measured_display_brightness_nits:
-          type: integer
-          example: 2050
-        measured_loudspeaker_lufs:
-          type: number
-          example: -24.5
-        measured_battery_active_use_hours:
-          type: number
-          example: 12.5
-    SoundMetrics:
-      type: object
-      properties:
-        has_stereo_speakers:
-          type: boolean
-          example: true
-        has_jack_35mm:
-          type: boolean
-          example: false
-        audio_quality_features:
-          type: array
-          items:
-            type: string
-          example:
-          - 24-bit/192kHz audio
     ConnectivityMetrics:
       type: object
       properties:
@@ -419,24 +352,6 @@ components:
         usb_has_otg:
           type: boolean
           example: true
-    DisplayMetrics:
-      type: object
-      properties:
-        size_inches:
-          type: number
-          example: 6.3
-        panel_type:
-          type: string
-          example: LTPO OLED
-        refresh_rate_hz:
-          type: integer
-          example: 120
-        peak_brightness_nits:
-          type: integer
-          example: 3000
-        protection_type:
-          type: string
-          example: Gorilla Glass Victus 2
     PhysicalMetrics:
       type: object
       properties:
@@ -473,6 +388,99 @@ components:
         is_water_resistant:
           type: boolean
           example: true
+    PowerMetrics:
+      type: object
+      properties:
+        capacities_mah:
+          type: array
+          items:
+            type: integer
+          example:
+          - 4700
+        max_wired_charging_w:
+          type: integer
+          example: 27
+        has_wireless_charging:
+          type: boolean
+          example: true
+    BenchmarkMetrics:
+      type: object
+      properties:
+        antutu_score:
+          type: string
+          example: 1150000 (v10)
+        geekbench_score:
+          type: string
+          example: 1950 (single-core), 4700 (multi-core)
+        measured_display_brightness_nits:
+          type: integer
+          example: 2050
+        measured_loudspeaker_lufs:
+          type: number
+          example: -24.5
+        measured_battery_active_use_hours:
+          type: number
+          example: 12.5
+    DisplayMetrics:
+      type: object
+      properties:
+        size_inches:
+          type: number
+          example: 6.3
+        panel_type:
+          type: string
+          example: LTPO OLED
+        refresh_rate_hz:
+          type: integer
+          example: 120
+        peak_brightness_nits:
+          type: integer
+          example: 3000
+        protection_type:
+          type: string
+          example: Gorilla Glass Victus 2
+    SoundMetrics:
+      type: object
+      properties:
+        has_stereo_speakers:
+          type: boolean
+          example: true
+        has_jack_35mm:
+          type: boolean
+          example: false
+        audio_quality_features:
+          type: array
+          items:
+            type: string
+          example:
+          - 24-bit/192kHz audio
+    EuLabelMetrics:
+      type: object
+      properties:
+        energy_class:
+          type: string
+          example: A
+        battery_endurance:
+          type: string
+          example: 84h
+        battery_endurance_hours:
+          type: number
+          example: 84
+        free_fall_class:
+          type: string
+          example: Class B
+        repairability_class:
+          type: string
+          example: Class A
+    CpuMetrics:
+      type: object
+      properties:
+        total_cores:
+          type: integer
+          example: 9
+        max_clock_speed_ghz:
+          type: number
+          example: 3.1
   responses:
     Unauthorized:
       description: Unauthorized. Missing or invalid RapidAPI key.

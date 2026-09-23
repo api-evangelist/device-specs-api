@@ -1,7 +1,7 @@
 {
   "provider": "device-specs-api",
   "sources": [
-    "device-specs-api-values-api-openapi.yml"
+    "_original/device-specs-api-openapi-original.json"
   ],
   "outputs": [
     "device-specs-api-values-api-openapi.yml"
@@ -10,8 +10,16 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "device-specs-api-values-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "device-specs-api-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "device-specs-api-openapi-original.json: tagged paths GET /api/values/clean/devices -> Values",
+    "device-specs-api-openapi-original.json: tagged paths GET /api/values/clean/getdevices/{manufacturer} -> Values",
+    "device-specs-api-openapi-original.json: tagged paths GET /api/values/clean/devicesbychipset/{chipset} -> Values",
+    "device-specs-api-openapi-original.json: tagged paths GET /api/values/clean/getspecs/{manufacturer}/{model} -> Values",
+    "device-specs-api-openapi-original.json: declared missing tag: Values",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "device-specs-api-values-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
